@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bin/rails server -b 0.0.0.0
+    volumes:
+      - .:/app
+    sysctls:
+      net.core.somaxconn: 1024
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    restart: always
