@@ -1,0 +1,7 @@
+<h1>記事一覧</h1>
+<ul>
+  <% @list[:contents].each do |content| %> 　
+  <li><%= link_to content[:title] %></li>
+  <% end %>
+</ul>
+
