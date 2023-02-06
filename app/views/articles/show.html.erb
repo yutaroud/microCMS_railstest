@@ -1,6 +1,7 @@
 <% if @list.present? %>
   <h1><%= @list[:title]%></h1>
   <%= @list[:content].to_s.html_safe %> 
+  <%= @list[:markup]&.map{ |markup| markup.fetch(:content) }&.join.to_s.html_safe %>
 <% else %>
   <%= "記事が見つかりませんでした。" %>
 <% end %>
