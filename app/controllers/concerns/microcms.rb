@@ -2,11 +2,12 @@ module Microcms
   extend ActiveSupport::Concern
   require 'httpclient'
 
-  def article_list    
+  def article_list(id=nil, draft_key=nil)
     client = HTTPClient.new
     response = client.get(
-      "https://#{Rails.application.credentials.microcms[:domain]}.microcms.io/api/v1/blogs/",
-      header: { "X-MICROCMS-API-KEY": Rails.application.credentials.microcms[:key] }
+      "https://#{Rails.application.credentials.microcms[:domain]}.microcms.io/api/v1/blogs/#{id.present? ? id : ''}",
+      header: { "X-MICROCMS-API-KEY": Rails.application.credentials.microcms[:key] },
+      query: { draftKey: draft_key }
     )
     
     return nil unless response.status == 200

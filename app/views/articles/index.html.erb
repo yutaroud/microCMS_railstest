@@ -1,7 +1,7 @@
 <h1>記事一覧</h1>
 <ul>
-  <% @list[:contents].each do |content| %> 　
-  <li><%= link_to content[:title] %></li>
+  <% @list[:contents].each do |content| %>
+    <li><%= image_tag content[:eyecatch][:url], size: '300x160' %> <br> <%= link_to content[:title], show_path(content[:id]) %></li>
   <% end %>
 </ul>
 
