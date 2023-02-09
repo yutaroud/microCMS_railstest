@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   include Microcms
+  include Pagy::Backend
 
   def index
     @list = article_list

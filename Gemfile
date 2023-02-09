@@ -44,8 +44,6 @@ gem "bootsnap", require: false
 
 gem "httpclient"
 
-gem 'pagy', '~> 6.0'
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 
