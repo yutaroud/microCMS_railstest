@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @list = article_list(params[:id], params[:draft_key])
+    @list = article_list(nil, params[:id], params[:draft_key])
   end
 
   private
