@@ -23,28 +23,28 @@ RSpec.describe ArticlesHelper, type: :helper do
       let!(:offset) { 10 }
       let!(:content_length) { 100 }
 
-      it { is_expected.to eq [1,2,3,4,10] }
+      it { is_expected.to eq [1, 2, 3, 4, 10] }
     end
 
     context '現在のページが最初のページから2ページ以内の場合' do
       let!(:offset) { 30 }
       let!(:content_length) { 100 }
 
-      it { is_expected.to eq [1,2,3,4,5,6,10] }
+      it { is_expected.to eq [1, 2, 3, 4, 5, 6, 10] }
     end
 
     context '現在のページが最後のページから2ページ以内の場合' do
       let!(:offset) { 80 }
       let!(:content_length) { 100 }
 
-      it { is_expected.to eq [1,7,8,9,10] }
+      it { is_expected.to eq [1, 7, 8, 9, 10] }
     end
 
     context '現在のページが最後のページと同じ場合' do
       let!(:offset) { 90 }
       let!(:content_length) { 100 }
 
-      it { is_expected.to eq [1,8,9,10] }
+      it { is_expected.to eq [1, 8, 9, 10] }
     end
 
     context '現在のページが最後のページよりも更に多い数が指定された場合' do
@@ -58,7 +58,7 @@ RSpec.describe ArticlesHelper, type: :helper do
       let!(:offset) { -100 }
       let!(:content_length) { 100 }
 
-      it { is_expected.to eq [1,2,3,10] }
+      it { is_expected.to eq [1, 2, 3, 10] }
     end
   end
 end

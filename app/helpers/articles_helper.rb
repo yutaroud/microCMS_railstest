@@ -15,7 +15,7 @@ module ArticlesHelper
     elsif (current_page - first_page) <= near_page_size
       [*first_page..(current_page + near_page_size), last_page]
     elsif (current_page - first_page) >= near_page_size && current_page < last_page - near_page_size
-      [first_page, *(current_page - near_page_size)..(current_page + near_page_size), last_page].uniq 
+      [first_page, *(current_page - near_page_size)..(current_page + near_page_size), last_page].uniq
     elsif (current_page - last_page) <= near_page_size
       [first_page, *(current_page - near_page_size)..last_page]
     else

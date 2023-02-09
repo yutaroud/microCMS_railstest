@@ -12,7 +12,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def offset
-      @offset = params[:offset].to_i || 0
-    end
+
+  def offset
+    @offset = params[:offset].to_i || 0
+  end
 end
