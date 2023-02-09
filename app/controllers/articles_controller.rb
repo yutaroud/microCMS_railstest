@@ -1,12 +1,18 @@
 class ArticlesController < ApplicationController
   include Microcms
-  include Pagy::Backend
+
+  before_action :offset, only: :index
 
   def index
-    @list = article_list
+    @list = article_list(params[:offset])
   end
 
   def show
     @list = article_list(params[:id], params[:draft_key])
   end
+
+  private
+    def offset
+      @offset = params[:offset].to_i || 0
+    end
 end
