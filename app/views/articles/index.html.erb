@@ -2,10 +2,20 @@
 <ul>
   <% @list[:contents].each do |content| %>
     <li>
-      <% if content[:eyecatch].present? %>
-        <%= image_tag content[:eyecatch][:url], size: '300x160' %> <br>
-      <% end %>
-      <%= link_to content[:title], show_path(content[:id]) %>
+      <div class="row">
+        <div class="col s8 m3">
+          <div class="card">
+            <div class="card-image">
+              <% if content[:eyecatch].present? %>
+                <%= image_tag content[:eyecatch][:url], size: '300x160' %> <br>
+              <% end %>
+            </div>
+            <div class="card-action">
+              <%= link_to content[:title], show_path(content[:id]) %>
+            </div>
+          </div>
+        </div>
+      </div>
     </li>
   <% end %>
 </ul>
