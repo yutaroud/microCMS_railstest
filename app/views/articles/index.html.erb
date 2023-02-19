@@ -10,12 +10,15 @@
   <% end %>
 </ul>
 
-<% pagination_num(@offset, @list[:totalCount]).each do |page_num| %>
-  <% current_page = (@offset / Microcms::PAGE_LIMIT).floor + 1  %>
-  <% if current_page == page_num %> 
-    <%= page_num %>
-  <% else %>
-    <%= link_to page_num, root_path({ offset: (page_num - 1) * Microcms::PAGE_LIMIT }) %>
+<ul class='pagination'>
+  <% pagination_num(@offset, @list[:totalCount]).each do |page_num| %>
+      <% current_page = (@offset / Microcms::PAGE_LIMIT).floor + 1  %>
+      <% if current_page == page_num %>
+        <li class='active'> <%= link_to page_num, '#' %></li>
+      <% else %>
+        <li class='waves-effect'>
+          <%= link_to page_num, root_path({ offset: (page_num - 1) * Microcms::PAGE_LIMIT }) %>
+        </li>
+      <% end %>
   <% end %>
-<% end %>
-
+</ul>
