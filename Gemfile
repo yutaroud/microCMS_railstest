@@ -46,6 +46,9 @@ gem 'bootsnap', require: false
 
 gem 'httpclient'
 
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
