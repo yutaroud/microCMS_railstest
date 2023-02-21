@@ -6,11 +6,11 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN apt-get update && apt-get -y upgrade && \
-    apt-get -y install git gcc build-essential libreadline-dev zlib1g-dev libmariadb-dev-compat libmariadb-dev libxml2-dev libxslt1-dev pkg-config
+    apt-get install --no-install-recommends -y git gcc build-essential libreadline-dev zlib1g-dev libmariadb-dev-compat libmariadb-dev libxml2-dev libxslt1-dev pkg-config
 
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
-ADD vendor/ /app/vendor
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+COPY vendor/ /app/vendor
 RUN bundle install -j4
 
 FROM ruby:2.7.5-slim
@@ -18,14 +18,16 @@ FROM ruby:2.7.5-slim
 ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get -y upgrade && \
-    apt-get install -y tzdata default-libmysqlclient-dev zlib1g libxml2 libxslt1.1 nodejs mariadb-client
+    apt-get install --no-install-recommends -y tzdata default-libmysqlclient-dev zlib1g libxml2 libxslt1.1 nodejs mariadb-client \
+     && apt-get clean \
+     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 
 RUN mkdir /app
 WORKDIR /app
 RUN useradd test -d /app -M -U
-ADD . /app
+COPY . /app
 
 RUN chown -R test:test /app && \ 
     chmod 0666 -R /app/log /app/tmp
